@@ -15,7 +15,7 @@ void main(List<String> arguments) {
   print('entrer votre pseudo : ');
   var pseudo = stdin.readLineSync();
 
-  player1.pseudo = pseudo; //stocker le pseudo demander dans l'objet player1
+  player1.setpseudo = pseudo; //stocker le pseudo demander dans l'objet player1
 
   do {
     final r = Random();
@@ -26,17 +26,28 @@ void main(List<String> arguments) {
         print('\n${player1.pseudo} ATTAQUE EN PREMIER\n');
         print('----$pseudo APPUIYER SUR ENTRER POUR LANCER LES DÉS----\n');
         stdin.readLineSync();
-        player1.attaquePlayerVersBot(bot);
+
+        print(
+          "choisissez votre force d\'attaque(1 ou 2):\n1-FORCE NORMALE: 100% de reussite\n2-FORCE DOUBLE 50% de reussite\n",
+        ); // NB: SI VOUS CHOISISSER AUTRE QUE 1 ou 2 la FORCE NORMALE sera SELECTIONNER par DEFAULT ",
+
+        print("entrer votre choix pour la force d'attaque");
+        var forceAttaque = int.parse(stdin.readLineSync());
+        attaqueSelonChoix(forceAttaque, player1, bot);
         bot.infoBot();
         bot.attaqueBotVersPlayer(player1);
         player1.infoPlayer();
-        //voir les infos du player1(santé...) après le coup du bot
         break;
       default:
         print('\nBOT ATTAQUE EN PREMIER\n');
         bot.attaqueBotVersPlayer(player1);
         player1.infoPlayer();
-        player1.attaquePlayerVersBot(bot);
+        print(
+          "choisissez votre force d\'attaque(1 ou 2):\n1-FORCE NORMALE: 100% de reussite\n2-FORCE DOUBLE 50% de reussite\n",
+        );
+        print("entrer votre choix pour la force d'attaque");
+        var forceAttaque = int.parse(stdin.readLineSync());
+        attaqueSelonChoix(forceAttaque, player1, bot);
         bot.infoBot();
       //voir les infos du bot(santé...) après le coup du player
     }
@@ -57,3 +68,30 @@ void main(List<String> arguments) {
     print('match null');
   }
 }
+
+void attaqueSelonChoix(int forceAttaque, Player player1, Bot bot) {
+  if (forceAttaque != 2) {
+    //force normale par defaut selectionner
+    player1.attaquePlayerVersBot(bot);
+  } else {
+    //force double selectionner
+    final r = Random();
+    var reussite = r.nextInt(2);
+    switch (reussite) {
+      case 1:
+        print("\tSucces de l'attaque double");
+        player1.setforce = player1.force * 2;
+        player1.attaquePlayerVersBot(bot);
+        player1.setforce = (player1.force / 2).toInt();
+        //revenir a la force de depart
+        break;
+      default:
+        print("\tEchec de l'attaque double");
+    }
+  }
+}
+/* 
+NB : JE PROPOSE 2 FORCE D'ATTAQUE:
+1- FORCE NORMALE AVEC 100% DE REUSSITTE
+2- FORCE DOUBLE AVEC 50% de REUSSITE
+*/
