@@ -34,7 +34,7 @@ void main(List<String> arguments) {
 
         print("entrer votre choix pour la force d'attaque");
         var forceAttaque = stdin.readLineSync();
-        attaqueSelonChoix(forceAttaque, player1, bot);
+        attaqueDePlayerSelonChoix(forceAttaque, player1, bot);
         bot.infoBot();
         bot.attaqueBotVersPlayer(player1);
         player1.infoPlayer();
@@ -48,7 +48,7 @@ void main(List<String> arguments) {
         );
         print("entrer votre choix pour la force d'attaque");
         var forceAttaque = stdin.readLineSync();
-        attaqueSelonChoix(forceAttaque, player1, bot);
+        attaqueDePlayerSelonChoix(forceAttaque, player1, bot);
         bot.infoBot();
       //voir les infos du bot(santé...) après le coup du player
     }
@@ -70,7 +70,7 @@ void main(List<String> arguments) {
   }
 }
 
-void attaqueSelonChoix(String forceAttaque, Player player1, Bot bot) {
+void attaqueDePlayerSelonChoix(String forceAttaque, Player player1, Bot bot) {
   if (forceAttaque != '2') {
     //force normale par defaut selectionner
     if (player1.arme.precision == 100) {
