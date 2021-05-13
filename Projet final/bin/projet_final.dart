@@ -29,11 +29,11 @@ void main(List<String> arguments) {
         stdin.readLineSync();
 
         print(
-          "choisissez votre force d\'attaque(1 ou 2):\n1-FORCE NORMALE: 100% de reussite\n2-FORCE DOUBLE 50% de reussite\n",
+          "choisissez votre force d\'attaque(1 ou 2):\n1-FORCE NORMALE: 100% de reussite\n2-FORCE DOUBLE 50% de reussite\nnb: si vous laisser vide ou entrer autre chose c'est la force normale(par defaut) qui sera pris en compte\n",
         ); // NB: SI VOUS CHOISISSER AUTRE QUE 1 ou 2 la FORCE NORMALE sera SELECTIONNER par DEFAULT ",
 
         print("entrer votre choix pour la force d'attaque");
-        var forceAttaque = int.parse(stdin.readLineSync());
+        var forceAttaque = stdin.readLineSync();
         attaqueSelonChoix(forceAttaque, player1, bot);
         bot.infoBot();
         bot.attaqueBotVersPlayer(player1);
@@ -44,10 +44,10 @@ void main(List<String> arguments) {
         bot.attaqueBotVersPlayer(player1);
         player1.infoPlayer();
         print(
-          "choisissez votre force d\'attaque(1 ou 2):\n1-FORCE NORMALE: 100% de reussite\n2-FORCE DOUBLE 50% de reussite\n",
+          "choisissez votre force d\'attaque(1 ou 2):\n1-FORCE NORMALE: 100% de reussite\n2-FORCE DOUBLE 50% de reussite\nnb: si vous laisser vide ou entrer autre chose c'est la force normale(par defaut) qui sera pris en compte\n",
         );
         print("entrer votre choix pour la force d'attaque");
-        var forceAttaque = int.parse(stdin.readLineSync());
+        var forceAttaque = stdin.readLineSync();
         attaqueSelonChoix(forceAttaque, player1, bot);
         bot.infoBot();
       //voir les infos du bot(santé...) après le coup du player
@@ -70,8 +70,8 @@ void main(List<String> arguments) {
   }
 }
 
-void attaqueSelonChoix(int forceAttaque, Player player1, Bot bot) {
-  if (forceAttaque != 2) {
+void attaqueSelonChoix(String forceAttaque, Player player1, Bot bot) {
+  if (forceAttaque != '2') {
     //force normale par defaut selectionner
     if (player1.arme.precision == 100) {
       player1.attaquePlayerVersBot(bot);
