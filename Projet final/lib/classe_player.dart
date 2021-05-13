@@ -1,11 +1,13 @@
-import 'package:projet2_en_groupe/utils.dart';
-import 'package:projet2_en_groupe/classe_bot.dart';
+import 'package:projet_final/utils.dart';
+import 'package:projet_final/classe_bot.dart';
+import "package:projet_final/arme.dart";
 
 class Player {
   String _pseudo;
   int _force;
   int _health;
-  Player(this._pseudo, this._force, this._health);
+  Arme arme;
+  Player(this._pseudo, this._force, this._health, this.arme);
 
   void infoPlayer() {
     print(
@@ -13,8 +15,8 @@ class Player {
   }
 
   void attaquePlayerVersBot(Bot b) {
-    var coup = this._force * lanceDes(this._pseudo);
-    //multiplication avec la force
+    var coup = this.arme.puissance * this._force * lanceDes(this._pseudo);
+    //multiplication avec la force et la puissance de l'arme
     print('${this._pseudo} assène un coup sur le bot avec une force de $coup');
     b.sethealth = b.health - coup;
   }

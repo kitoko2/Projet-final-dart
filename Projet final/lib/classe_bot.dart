@@ -1,5 +1,5 @@
-import 'package:projet2_en_groupe/utils.dart';
-import 'package:projet2_en_groupe/classe_player.dart';
+import 'package:projet_final/utils.dart';
+import 'package:projet_final/classe_player.dart';
 
 class Bot {
   int _force;

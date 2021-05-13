@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'dart:io';
-import 'package:projet2_en_groupe/classe_bot.dart';
-import 'package:projet2_en_groupe/classe_player.dart';
+import 'package:projet_final/classe_bot.dart';
+import 'package:projet_final/classe_player.dart';
+import "package:projet_final/arme.dart";
 
 //les class sont dans le dossier lib
 void main(List<String> arguments) {
@@ -9,7 +10,7 @@ void main(List<String> arguments) {
   var run = true;
   var bot = Bot(1, 100);
   //objet de type player
-  var player1 = Player('', 1, 100);
+  var player1 = Player('', 1, 100, Arme('baton', 1, 100));
 
   // c'est parti
   print('entrer votre pseudo : ');
@@ -72,7 +73,10 @@ void main(List<String> arguments) {
 void attaqueSelonChoix(int forceAttaque, Player player1, Bot bot) {
   if (forceAttaque != 2) {
     //force normale par defaut selectionner
-    player1.attaquePlayerVersBot(bot);
+    if (player1.arme.precision == 100) {
+      player1.attaquePlayerVersBot(bot);
+    } //aucun echec car l'arme est precise
+
   } else {
     //force double selectionner
     final r = Random();
@@ -92,6 +96,6 @@ void attaqueSelonChoix(int forceAttaque, Player player1, Bot bot) {
 }
 /* 
 NB : JE PROPOSE 2 FORCE D'ATTAQUE:
-1- FORCE NORMALE AVEC 100% DE REUSSITTE
+1- FORCE NORMALE AVEC 100% DE REUSSITE
 2- FORCE DOUBLE AVEC 50% de REUSSITE
 */
